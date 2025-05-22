@@ -32,7 +32,7 @@ export default function HomePage() {
             alt="Islamic calligraphy or mosque silhouette" 
             width={600} 
             height={300} 
-            className="mx-auto mb-8 rounded-lg shadow-xl"
+            className="mx-auto mb-8 rounded-lg shadow-xl w-full max-w-xl h-auto"
             data-ai-hint="islamic art"
           />
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-primary">
@@ -41,11 +41,11 @@ export default function HomePage() {
           <p className="mt-4 text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto">
             Your trusted platform for seeking and sharing Islamic knowledge. Ask questions, get answers from verified Ulama, and deepen your understanding.
           </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button size="lg" asChild>
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Button size="lg" asChild className="w-full max-w-xs sm:w-auto">
               <Link href="/questions/ask">Ask a Question</Link>
             </Button>
-            <Button size="lg" variant="secondary" asChild>
+            <Button size="lg" variant="secondary" asChild className="w-full max-w-xs sm:w-auto">
               <Link href="/questions">Browse Questions</Link>
             </Button>
           </div>
