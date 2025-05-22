@@ -15,7 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Bell, LogOut, Search, Settings, User as UserIcon, MessageSquarePlus } from 'lucide-react';
 import { Logo } from '@/components/shared/logo';
-import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar'; // Assuming SidebarTrigger is exported
+import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
+import { ThemeSwitcher } from '@/components/shared/theme-switcher'; // Added ThemeSwitcher
 
 // Mock current user - replace with actual auth logic
 const currentUser = {
@@ -25,14 +26,14 @@ const currentUser = {
 };
 
 export function AppHeader() {
-  const { isMobile } = useSidebar(); // Get sidebar context
+  const { isMobile } = useSidebar(); 
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6 shadow-sm">
       {isMobile && <SidebarTrigger />} 
       {!isMobile && <Logo iconSize={24} textSize="text-xl" />}
       
-      <div className="flex flex-1 items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+      <div className="flex flex-1 items-center gap-2 md:ml-auto md:gap-2 lg:gap-4">
         <form className="ml-auto flex-1 sm:flex-initial">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -44,6 +45,7 @@ export function AppHeader() {
             />
           </div>
         </form>
+        <ThemeSwitcher /> {/* Added ThemeSwitcher component here */}
         <Button variant="outline" size="icon" className="rounded-full" asChild>
           <Link href="/questions/ask">
             <MessageSquarePlus className="h-5 w-5" />
