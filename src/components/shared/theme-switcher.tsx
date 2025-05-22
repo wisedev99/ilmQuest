@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -26,8 +27,22 @@ export function ThemeSwitcher() {
     setMounted(true);
   }, []);
 
+  // Moved React.useMemo to be called unconditionally before the early return
+  const currentModeIcon = React.useMemo(() => {
+    if (!mounted) {
+      // Return a default or placeholder icon if not mounted, or handle appropriately
+      // For now, let's default to Sun, but this part might need adjustment based on desired initial state
+      return <Sun className="h-4 w-4" />;
+    }
+    if (darkModeTheme === "system") {
+      return resolvedTheme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />;
+    }
+    return darkModeTheme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />;
+  }, [mounted, darkModeTheme, resolvedTheme]);
+
   if (!mounted) {
     return null; // Avoid rendering until mounted to prevent hydration mismatch
+                 // and ensure all hooks above have been called
   }
 
   const handleDarkModeChange = (newTheme: string) => {
@@ -38,13 +53,6 @@ export function ThemeSwitcher() {
     setColorTheme(newColorTheme);
   };
   
-  const currentModeIcon = React.useMemo(() => {
-    if (darkModeTheme === "system") {
-      return resolvedTheme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />;
-    }
-    return darkModeTheme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />;
-  }, [darkModeTheme, resolvedTheme]);
-
 
   return (
     <div className="flex items-center gap-2">
