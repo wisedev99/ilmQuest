@@ -1,7 +1,6 @@
-
 "use client";
 
-import * as React from "react"; // Imported React for useState
+import * as React from "react"; 
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,6 +17,8 @@ import { Bell, LogOut, Search, Settings, User as UserIcon, MessageSquarePlus } f
 import { Logo } from '@/components/shared/logo';
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { ThemeSwitcher } from '@/components/shared/theme-switcher';
+import { LanguageSwitcher } from '@/components/shared/language-switcher'; // Import LanguageSwitcher
+import { useI18n } from '@/locales/client'; // Import useI18n for translations
 
 // Mock current user - replace with actual auth logic
 const currentUser = {
@@ -28,7 +29,8 @@ const currentUser = {
 
 export function AppHeader() {
   const { isMobile } = useSidebar();
-  const [userMenuOpen, setUserMenuOpen] = React.useState(false); // State for dropdown
+  const [userMenuOpen, setUserMenuOpen] = React.useState(false); 
+  const t = useI18n(); // Initialize useI18n
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6 shadow-sm">
@@ -41,22 +43,23 @@ export function AppHeader() {
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search questions..."
+              placeholder={t('header.searchPlaceholder')}
               className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-              aria-label="Search questions"
+              aria-label={t('header.searchPlaceholder')}
             />
           </div>
         </form>
+        <LanguageSwitcher /> 
         <ThemeSwitcher />
         <Button variant="outline" size="icon" className="rounded-full" asChild>
-          <Link href="/questions/ask">
+          <Link href="/questions/ask" aria-label={t('header.askQuestionTooltip')}>
             <MessageSquarePlus className="h-5 w-5" />
-            <span className="sr-only">Ask Question</span>
+            <span className="sr-only">{t('header.askQuestionTooltip')}</span>
           </Link>
         </Button>
-        <Button variant="ghost" size="icon" className="rounded-full">
+        <Button variant="ghost" size="icon" className="rounded-full" aria-label={t('header.notificationsTooltip')}>
           <Bell className="h-5 w-5" />
-          <span className="sr-only">Toggle notifications</span>
+          <span className="sr-only">{t('header.notificationsTooltip')}</span>
         </Button>
         <DropdownMenu open={userMenuOpen} onOpenChange={setUserMenuOpen}>
           <DropdownMenuTrigger asChild>
@@ -80,18 +83,18 @@ export function AppHeader() {
             <DropdownMenuItem asChild onClick={() => setUserMenuOpen(false)}>
               <Link href="/profile/user1"> {/* Mock current user ID */}
                 <UserIcon className="mr-2 h-4 w-4" />
-                Profile
+                {t('header.profile')}
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setUserMenuOpen(false)}> {/* Assuming this would trigger an action and then close */}
+            <DropdownMenuItem onClick={() => setUserMenuOpen(false)}> 
               <Settings className="mr-2 h-4 w-4" />
-              Settings
+              {t('header.settings')}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild onClick={() => setUserMenuOpen(false)}>
-               <Link href="/login"> {/* For demo, link to login. Should be a logout action */}
+               <Link href="/login"> 
                 <LogOut className="mr-2 h-4 w-4" />
-                Log out
+                {t('header.logout')}
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

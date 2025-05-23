@@ -1,7 +1,6 @@
 // src/locales/fa.ts
 export default {
   appName: 'علم‌کوئست',
-  // Add other Persian translations here
   dashboard: {
     title: 'خوش آمدید، {name}!',
     description: 'اینجا چیزهای جدیدی در علم‌کوئست وجود دارد. برای یادگیری یا اشتراک‌گذاری آماده‌اید؟',
@@ -19,7 +18,7 @@ export default {
     profile: 'پروفایل',
     settings: 'تنظیمات',
     logout: 'خروج',
-    language: 'زبان',
+    languageSwitcherTooltip: 'تغییر زبان',
   },
   home: {
     welcomeMessage: 'به {appName} خوش آمدید',

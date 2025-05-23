@@ -1,7 +1,6 @@
 // src/locales/tj.ts
 export default {
   appName: 'ИлмКвест',
-  // Add other Tajik translations here
   dashboard: {
     title: 'Хуш омадед, {name}!',
     description: 'Ин аст он чизе, ки дар ИлмКвест нав аст. Барои омӯхтан ё мубодила омодаед?',
@@ -14,12 +13,12 @@ export default {
   },
   header: {
     searchPlaceholder: 'Ҷустуҷӯи саволҳо...',
-    askQuestionTooltip: 'Савол диҳED',
+    askQuestionTooltip: 'Савол диҳед',
     notificationsTooltip: 'Огоҳиҳоро фаъол/хомӯш кунед',
     profile: 'Профил',
     settings: 'Танзимот',
     logout: 'Баромадан',
-    language: 'Забон',
+    languageSwitcherTooltip: 'Забонро интихоб кунед',
   },
   home: {
     welcomeMessage: 'Ба {appName} хуш омадед',

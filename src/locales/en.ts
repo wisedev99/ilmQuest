@@ -1,7 +1,6 @@
 // src/locales/en.ts
 export default {
   appName: 'IlmQuest',
-  // Add other English translations here
   dashboard: {
     title: 'Welcome back, {name}!',
     description: "Here's what's new on IlmQuest. Ready to learn or share?",
@@ -19,7 +18,7 @@ export default {
     profile: 'Profile',
     settings: 'Settings',
     logout: 'Log out',
-    language: 'Language',
+    languageSwitcherTooltip: 'Change language',
   },
   home: {
     welcomeMessage: 'Welcome to {appName}',

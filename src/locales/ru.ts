@@ -1,7 +1,6 @@
 // src/locales/ru.ts
 export default {
   appName: 'ИлмКвест',
-  // Add other Russian translations here
   dashboard: {
     title: 'С возвращением, {name}!',
     description: 'Вот что нового в ИлмКвест. Готовы учиться или делиться?',
@@ -19,7 +18,7 @@ export default {
     profile: 'Профиль',
     settings: 'Настройки',
     logout: 'Выйти',
-    language: 'Язык',
+    languageSwitcherTooltip: 'Сменить язык',
   },
   home: {
     welcomeMessage: 'Добро пожаловать в {appName}',
