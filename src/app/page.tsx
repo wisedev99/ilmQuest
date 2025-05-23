@@ -9,14 +9,13 @@ import { Logo } from "@/components/shared/logo";
 import { AppFooter } from "@/components/layout/app-footer";
 import Image from "next/image";
 import { useI18n } from "@/contexts/i18n-provider";
-import { APP_NAME } from "@/lib/constants"; // For app name if not translated
+import { APP_NAME } from "@/lib/constants";
 
 export default function HomePage() {
   const popularQuestions = getPopularQuestions();
   const { t, isLoaded: i18nIsLoaded, language } = useI18n();
 
   if (!i18nIsLoaded) {
-    // Render a loading state or minimal content until translations are loaded
     return (
       <div className="flex flex-col min-h-screen bg-gradient-to-br from-background to-secondary/30 items-center justify-center">
         <Logo iconSize={32} textSize="text-3xl" />
@@ -24,6 +23,8 @@ export default function HomePage() {
       </div>
     );
   }
+
+  const appNameToDisplay = t('appName') || APP_NAME;
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-background to-secondary/30">
@@ -50,7 +51,7 @@ export default function HomePage() {
             data-ai-hint="islamic art"
           />
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-primary">
-            {t('home.welcomeMessage', { appName: APP_NAME })}
+            {t('home.welcomeMessage', { appName: appNameToDisplay })}
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto">
             {t('home.tagline')}

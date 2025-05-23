@@ -39,8 +39,6 @@ export function LanguageSwitcher() {
 
   if (!isMounted) {
     // Render a disabled button placeholder during server rendering and initial client hydration
-    // This helps avoid hydration mismatches if the button structure is complex.
-    // Alternatively, return null if you prefer nothing to be shown initially.
     return (
        <Button variant="outline" size="icon" disabled aria-label="Change language">
           <Languages className="h-[1.2rem] w-[1.2rem]" />
@@ -50,7 +48,6 @@ export function LanguageSwitcher() {
   
   if (!i18nIsLoaded) {
     // After mount, if i18n is still loading translations, show a disabled button.
-    // Using a static string for aria-label here is safest.
     return (
        <Button variant="outline" size="icon" disabled aria-label="Change language (loading...)">
           <Languages className="h-[1.2rem] w-[1.2rem]" />

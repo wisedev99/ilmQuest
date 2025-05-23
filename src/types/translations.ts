@@ -32,5 +32,4 @@ export interface Translations {
     title: string;
     viewAll: string;
   };
-  // Add other top-level keys as needed
 }

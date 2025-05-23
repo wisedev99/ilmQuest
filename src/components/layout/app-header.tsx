@@ -23,7 +23,7 @@ import { useI18n } from '@/contexts/i18n-provider';
 
 // Mock current user - replace with actual auth logic
 const currentUser = {
-  id: 'user1', // Added id for profile link consistency
+  id: 'user1', 
   name: "Ali Hassan",
   email: "ali.hassan@example.com",
   avatarUrl: "https://placehold.co/40x40.png",
@@ -41,9 +41,11 @@ export function AppHeader() {
         {isMobile && <SidebarTrigger />}
         {!isMobile && <Logo iconSize={24} textSize="text-xl" />}
         <div className="flex flex-1 items-center justify-end gap-2 md:ml-auto md:gap-2 lg:gap-4">
-          {/* Placeholder for switchers or loading indicator */}
-          <div className="h-8 w-20 bg-muted rounded-md animate-pulse"></div> {/* Language switcher placeholder */}
+          <div className="h-8 w-10 bg-muted rounded-md animate-pulse"></div> {/* Language switcher placeholder */}
           <div className="h-8 w-20 bg-muted rounded-md animate-pulse"></div> {/* Theme switcher placeholder */}
+          <div className="h-8 w-8 bg-muted rounded-full animate-pulse"></div> {/* Ask Question placeholder */}
+          <div className="h-8 w-8 bg-muted rounded-full animate-pulse"></div> {/* Bell placeholder */}
+          <div className="h-9 w-9 bg-muted rounded-full animate-pulse"></div> {/* Avatar placeholder */}
         </div>
       </header>
     );
@@ -98,7 +100,6 @@ export function AppHeader() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild onClick={() => setUserMenuOpen(false)}>
-              {/* Use currentUser.id for profile link */}
               <Link href={`/profile/${currentUser.id}`}> 
                 <UserIcon className="mr-2 h-4 w-4" />
                 {t('header.profile')}

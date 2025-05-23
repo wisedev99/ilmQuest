@@ -6,10 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PopularQuestions } from "@/components/qa/popular-questions";
-import { getPopularQuestions, mockQuestions, mockUsers } from "@/lib/mock-data";
+import { getPopularQuestions, mockUsers, mockQuestions } from "@/lib/mock-data";
 import { Activity, HelpCircle, MessageSquarePlus, User } from "lucide-react";
 import Image from "next/image";
 import { useI18n } from "@/contexts/i18n-provider";
+import { APP_NAME } from "@/lib/constants";
 
 export default function DashboardPage() {
   const { t, isLoaded: i18nIsLoaded } = useI18n();
@@ -25,6 +26,8 @@ export default function DashboardPage() {
       </AppLayout>
     );
   }
+  
+  const appNameToDisplay = t('appName') || APP_NAME;
 
   return (
     <AppLayout>
@@ -32,7 +35,7 @@ export default function DashboardPage() {
         <Card className="shadow-lg">
           <CardHeader className="pb-4">
             <CardTitle className="text-3xl">{t('dashboard.title', { name: currentUser.name })}</CardTitle>
-            <CardDescription>{t('dashboard.description')}</CardDescription>
+            <CardDescription>{t('dashboard.description', { appName: appNameToDisplay })}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col sm:flex-row items-center gap-6">
             <Image 

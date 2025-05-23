@@ -11,7 +11,7 @@
     "languageSwitcherTooltip": "Change language"
   },
   "home": {
-    "welcomeMessage": "Welcome to IlmQuest",
+    "welcomeMessage": "Welcome to {appName}",
     "tagline": "Your trusted platform for seeking and sharing Islamic knowledge. Ask questions, get answers from verified Ulama, and deepen your understanding.",
     "askQuestionButton": "Ask a Question",
     "browseQuestionsButton": "Browse Questions",
@@ -20,7 +20,7 @@
   },
   "dashboard": {
     "title": "Welcome back, {name}!",
-    "description": "Here's what's new on IlmQuest. Ready to learn or share?",
+    "description": "Here's what's new on {appName}. Ready to learn or share?",
     "askQuestion": "Ask Question",
     "browseQuestions": "Browse Questions"
   },

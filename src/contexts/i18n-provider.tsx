@@ -47,6 +47,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
     setIsLoaded(false);
     try {
+      // Dynamically import the JSON file
       const module = await import(`@/locales/${effectiveLang}.json`);
       setTranslations(module.default as Translations);
     } catch (error) {
@@ -71,7 +72,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let storedLang: LanguageCode | null = null;
     try {
-      storedLang = localStorage.getItem(I18N_STORAGE_KEY) as LanguageCode | null;
+      // Ensure this code only runs on the client
+      if (typeof window !== 'undefined') {
+        storedLang = localStorage.getItem(I18N_STORAGE_KEY) as LanguageCode | null;
+      }
     } catch (e) {
       console.warn("Could not access localStorage to get language:", e);
     }
@@ -92,7 +96,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }
     setLanguageState(lang);
     try {
-      localStorage.setItem(I18N_STORAGE_KEY, lang);
+      // Ensure this code only runs on the client
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(I18N_STORAGE_KEY, lang);
+      }
     } catch (e) {
       console.warn("Could not access localStorage to set language:", e);
     }
@@ -104,10 +111,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const t = useCallback((key: string, replacements?: Record<string, string>): string => {
     if (!isLoaded) {
-        // console.warn(`Translations not ready for key "${key}" (lang: ${language}, loaded: ${isLoaded})`);
-        return key; 
+        return key; // Return key if translations are not loaded yet
     }
-    // Ensure translations is not null/undefined before passing to getNestedValue
     const currentTranslations = translations || {};
     let translatedString = getNestedValue(currentTranslations as NestedTranslations, key);
 
