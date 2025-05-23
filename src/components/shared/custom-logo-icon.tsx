@@ -16,16 +16,15 @@ export function CustomLogoIcon({ size = 28, className }: CustomLogoIconProps) {
     setMounted(true);
   }, []);
 
+  // Use the theme's primary color for the icon in both light and dark modes.
+  // This ensures it's always an accent color that contrasts with the background.
+  const iconColor = 'hsl(var(--primary))';
+
   if (!mounted) {
     // Return a placeholder to avoid hydration mismatch and ensure resolvedTheme is available.
     // A simple div with the requested size can act as a placeholder.
     return <div style={{ width: size, height: size }} className={className} />;
   }
-
-  // Determine color based on theme.
-  // Using CSS variables for theme consistency is better if possible,
-  // but for direct SVG fill, explicit color values are straightforward here.
-  const iconColor = resolvedTheme === 'dark' ? 'hsl(var(--primary-foreground))' : 'hsl(var(--primary))';
 
   return (
     <svg
@@ -35,24 +34,22 @@ export function CustomLogoIcon({ size = 28, className }: CustomLogoIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
-      fill={iconColor} // Apply color to the whole SVG, paths can inherit or override
+      // The 'fill' on the SVG element itself can be a default, but explicit fills/strokes on paths are more precise.
     >
       <title>FajrulIlm Logo Icon</title>
       <desc>An abstract calligraphic icon representing FajrulIlm.</desc>
-      {/* This is a simplified abstract SVG. For a true representation of complex calligraphy, 
-          an externally created SVG file placed in the /public directory and used via an <Image> tag would be more accurate. */}
       
       {/* Main flowing element - highly simplified */}
       <path 
         d="M40,85 C25,70 25,40 45,20 C55,10 65,10 70,25 C75,40 65,55 55,65 C45,75 40,85 40,85 Z M50,75 Q60,50 70,25"
-        stroke={iconColor}
+        stroke={iconColor} // Use the determined iconColor for the stroke
         strokeWidth="6"
-        fill="none"
+        fill="none" // This path is an outline
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       {/* Dot/accent element at the top */}
-      <circle cx="70" cy="22" r="5" fill={iconColor} />
+      <circle cx="70" cy="22" r="5" fill={iconColor} /> {/* Use the determined iconColor for the fill */}
     </svg>
   );
 }
