@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { UserType } from "@/lib/constants";
+import { UserType, APP_NAME } from "@/lib/constants"; // Import APP_NAME
 import { useToast } from "@/hooks/use-toast";
 import React from "react";
 import { Eye, EyeOff } from "lucide-react";
@@ -75,7 +75,7 @@ export function SignupForm() {
     <Card className="w-full max-w-lg shadow-xl">
       <CardHeader>
         <CardTitle className="text-2xl">Create an Account</CardTitle>
-        <CardDescription>Join {process.env.NEXT_PUBLIC_APP_NAME || "IlmQuest"} to ask questions and share knowledge.</CardDescription>
+        <CardDescription>Join {APP_NAME} to ask questions and share knowledge.</CardDescription> {/* Use APP_NAME */}
       </CardHeader>
       <CardContent>
         <Form {...form}>

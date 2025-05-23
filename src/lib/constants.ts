@@ -4,4 +4,4 @@ export enum UserType {
   Ulama = 'Ulama',
 }
 
-export const APP_NAME = "IlmQuest";
+export const APP_NAME = "Sophia Lumen";
