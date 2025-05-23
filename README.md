@@ -19,6 +19,18 @@ FajrulIlm is a modern web application designed as a platform for Islamic questio
 *   **Responsive Design**: Optimized for a good user experience on both desktop and mobile devices, suitable for webview integration.
 *   **Modern UI**: Built with ShadCN UI components and Tailwind CSS for a clean and professional look.
 
+## Screenshots
+
+<!-- 
+To add your screenshot:
+1. Create a folder like `.github/screenshots` in your project.
+2. Add your image (e.g., `login-page.png`) to that folder.
+3. Commit and push the image.
+4. Replace the placeholder below with the correct relative path, e.g., `![Login Page Screenshot](./.github/screenshots/login-page.png)`
+-->
+![Login Page Screenshot](https://placehold.co/300x600.png?text=Login+Page+Screenshot)
+*Login Page*
+
 ## Technology Stack
 
 *   **Frontend**: Next.js (App Router), React
@@ -106,3 +118,4 @@ Don't forget to give the project a star! Thanks again!
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information (if applicable).
+
