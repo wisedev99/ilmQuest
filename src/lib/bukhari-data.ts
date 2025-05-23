@@ -1,0 +1,64 @@
+
+import type { Hadith } from '@/types';
+
+// Sample Hadith from Sahih al-Bukhari
+// In a real application, this data would come from a database or a comprehensive JSON file.
+// Translations here are placeholders and would need to be accurate.
+export const sampleBukhariHadith: Hadith[] = [
+  {
+    id: 'bukhari_1',
+    collection: 'Sahih al-Bukhari',
+    bookNumber: 1,
+    bookName_en: 'Book of Revelation',
+    bookName_tj: 'Китоби Ваҳй',
+    bookName_ru: 'Книга Откровения',
+    bookName_fa: 'کتاب وحی',
+    hadithNumber: '1',
+    text_en: "Narrated 'Umar bin Al-Khattab: I heard Allah's Messenger (ﷺ) saying, \"The reward of deeds depends upon the intentions and every person will get the reward according to what he has intended. So whoever emigrated for worldly benefits or for a woman to marry, his emigration was for what he emigrated for.\"",
+    text_tj: "Аз Умар ибни Хаттоб ривоят аст, ки гуфт: Аз Расули Худо (ﷺ) шунидам, ки мегуфт: «Подоши аъмол ба ниятҳо вобаста аст ва ҳар кас мувофиқи нияташ подош хоҳад гирифт. Пас, ҳар кӣ барои манфиатҳои дунёӣ ё барои зане, ки мехоҳад бо ӯ издивоҷ кунад, ҳиҷрат кард, ҳиҷраташ барои он чизе буд, ки барои он ҳиҷрат кардааст.»",
+    text_ru: "Передают со слов ‘Умара бин аль-Хаттаба: Я слышал, как Посланник Аллаха (ﷺ) сказал: «Поистине, награда за дела зависит от намерений, и каждому человеку достанется то, что он намеревался обрести. Так, переселение того, кто переселился ради мирских благ или ради женщины, на которой он хотел жениться, было ради того, ради чего он переселился».",
+    text_fa: "عمر بن الخطاب روایت کرده است که شنیدم رسول خدا (ﷺ) می‌فرمود: «پاداش اعمال به نیت‌ها بستگی دارد و هر کس پاداش آنچه را که نیت کرده است، خواهد گرفت. پس هر کس برای منافع دنیوی یا برای زنی که می‌خواهد با او ازدواج کند، هجرت کرد، هجرت او برای همان چیزی بود که برای آن هجرت کرده است.»",
+  },
+  {
+    id: 'bukhari_2',
+    collection: 'Sahih al-Bukhari',
+    bookNumber: 1,
+    bookName_en: 'Book of Revelation',
+    bookName_tj: 'Китоби Ваҳй',
+    bookName_ru: 'Книга Откровения',
+    bookName_fa: 'کتاب وحی',
+    hadithNumber: '2',
+    text_en: "Narrated 'Aisha: (the mother of the faithful believers) Al-Harith bin Hisham asked Allah's Messenger (ﷺ) \"O Allah's Messenger (ﷺ)! How is the Divine Inspiration revealed to you?\" Allah's Messenger (ﷺ) replied, \"Sometimes it is 'revealed' like the ringing of a bell, this form of Inspiration is the hardest of all and then this state passes off after I have grasped what is inspired. Sometimes the Angel comes in the form of a man and talks to me and I grasp whatever he says.\" 'Aisha added: Verily I saw the Prophet (ﷺ) being inspired Divinely on a very cold day and noticed the sweat dropping from his forehead (as the Inspiration was over).",
+    text_tj: "Аз Оиша (модари мӯъминон) ривоят аст, ки Ҳорис ибни Ҳишом аз Расули Худо (ﷺ) пурсид: «Эй Расули Худо (ﷺ)! Ваҳйи илоҳӣ ба ту чӣ гуна нозил мешавад?» Расули Худо (ﷺ) ҷавоб дод: «Баъзан монанди садои зангӯла нозил мешавад, ки ин шакли ваҳй аз ҳама сахттар аст ва пас аз он ки ман он чиро, ки илҳом шудааст, дарк мекунам, ин ҳолат мегузарад. Баъзан фаришта дар сурати марде меояд ва бо ман сухан мегӯяд ва ман ҳар он чиро, ки мегӯяд, дарк мекунам.» Оиша илова кард: Ҳароина, Паёмбар (ﷺ)-ро дар рӯзи хеле сард дидам, ки ба ӯ ваҳйи илоҳӣ мешуд ва мушоҳида кардам, ки арақ аз пешониаш мечакид (вақте ки ваҳй тамом мешуд).",
+    text_ru: "Передают со слов ‘Аиши (матери правоверных): Аль-Харис бин Хишам спросил Посланника Аллаха (ﷺ): «О Посланник Аллаха (ﷺ)! Как тебе ниспосылается Божественное Откровение?» Посланник Аллаха (ﷺ) ответил: «Иногда оно ниспосылается подобно звону колокола, эта форма Откровения самая тяжелая из всех, и затем это состояние проходит после того, как я постиг то, что было вдохновлено. Иногда Ангел приходит в образе человека и говорит со мной, и я постигаю все, что он говорит». ‘Аиша добавила: «Поистине, я видела, как Пророку (ﷺ) ниспосылалось Божественное Откровение в очень холодный день, и замечала, как пот стекал с его лба (когда Откровение заканчивалось)»." ,
+    text_fa: "عایشه (مادر مؤمنان) روایت کرده است که حارث بن هشام از رسول خدا (ﷺ) پرسید: «ای رسول خدا (ﷺ)! وحی الهی چگونه بر تو نازل می‌شود؟» رسول خدا (ﷺ) پاسخ داد: «گاهی اوقات مانند صدای زنگ نازل می‌شود، این شکل از وحی از همه سخت‌تر است و سپس این حالت پس از آنکه من آنچه را که الهام شده است درک کردم، می‌گذرد. گاهی فرشته به شکل یک مرد می‌آید و با من صحبت می‌کند و من هر آنچه را که می‌گوید درک می‌کنم.» عایشه افزود: «به راستی من پیامبر (ﷺ) را در یک روز بسیار سرد دیدم که وحی الهی بر او نازل می‌شد و متوجه شدم که عرق از پیشانی او می‌چکید (پس از پایان وحی).»",
+  },
+  {
+    id: 'bukhari_3',
+    collection: 'Sahih al-Bukhari',
+    bookNumber: 1,
+    bookName_en: 'Book of Revelation',
+    bookName_tj: 'Китоби Ваҳй',
+    bookName_ru: 'Книга Откровения',
+    bookName_fa: 'کتاب وحی',
+    hadithNumber: '3',
+    text_en: "Narrated 'Aisha: (the mother of the faithful believers) The commencement of the Divine Inspiration to Allah's Messenger (ﷺ) was in the form of good dreams which came true like bright daylight, and then the love of seclusion was bestowed upon him. He used to go in seclusion in the cave of Hira where he used to worship (Allah alone) continuously for many days before his desire to see his family. He used to take with him the journey food for the stay and then come back to (his wife) Khadija to take his food likewise again till suddenly the Truth descended upon him while he was in the cave of Hira.",
+    text_tj: "Аз Оиша (модари мӯъминон) ривоят аст, ки ибтидои ваҳйи илоҳӣ ба Расули Худо (ﷺ) дар шакли хобҳои нек буд, ки мисли равшании рӯз амалӣ мешуданд ва сипас муҳаббати хилватнишинӣ ба ӯ ато шуд. Ӯ пеш аз он ки хоҳиши дидани хонаводаашро кунад, дар ғори Ҳиро хилват мекард ва дар он ҷо (танҳо Худоро) рӯзҳои зиёд ибодат мекард. Ӯ барои мондан хӯроки сафарро бо худ мебурд ва сипас ба назди (ҳамсараш) Хадиҷа бармегашт, то дубора хӯрокашро бигирад, то ногаҳон Ҳақ бар ӯ дар ҳоле ки дар ғори Ҳиро буд, нозил шуд.",
+    text_ru: "Передают со слов ‘Аиши (матери правоверных): Начало Божественного Откровения Посланнику Аллаха (ﷺ) было в виде хороших снов, которые сбывались, как яркий дневной свет, а затем ему была дарована любовь к уединению. Он уединялся в пещере Хира, где поклонялся (только Аллаху) непрерывно много дней, прежде чем у него возникало желание увидеть свою семью. Он брал с собой еду для пребывания, а затем возвращался к (своей жене) Хадидже, чтобы снова взять еду, пока внезапно Истина не снизошла на него, когда он был в пещере Хира.",
+    text_fa: "عایشه (مادر مؤمنان) روایت کرده است که آغاز وحی الهی به رسول خدا (ﷺ) به صورت رؤیاهای صادقه‌ای بود که مانند روشنایی روز به حقیقت می‌پیوست، و سپس محبت خلوت‌گزینی به او عطا شد. او قبل از اینکه میل به دیدن خانواده‌اش کند، در غار حرا به خلوت می‌رفت و در آنجا (فقط خدا را) روزهای متمادی عبادت می‌کرد. او برای ماندن، توشه سفر با خود می‌برد و سپس نزد (همسرش) خدیجه بازمی‌گشت تا دوباره توشه‌اش را بگیرد، تا اینکه ناگهان حقیقت بر او در حالی که در غار حرا بود، نازل شد.",
+  },
+  {
+    id: 'bukhari_4_prayer',
+    collection: 'Sahih al-Bukhari',
+    bookNumber: 2,
+    bookName_en: 'Book of Belief ( ایمان )',
+    bookName_tj: 'Китоби Имон',
+    bookName_ru: 'Книга Веры (Иман)',
+    bookName_fa: 'کتاب ایمان',
+    hadithNumber: '8',
+    text_en: "Narrated Ibn 'Umar: Allah's Messenger (ﷺ) said: Islam is based on (the following) five (principles): 1. To testify that none has the right to be worshipped but Allah and Muhammad is Allah's Messenger (ﷺ). 2. To offer the (compulsory congregational) prayers dutifully and perfectly. 3. To pay Zakat (i.e. obligatory charity). 4. To perform Hajj. (i.e. Pilgrimage to Mecca). 5. To observe fast during the month of Ramadan.",
+    text_tj: "Аз Ибни Умар ривоят аст, ки Расули Худо (ﷺ) гуфт: Ислом бар панҷ (асл) бино ёфтааст: 1. Шаҳодат додан, ки ҳеҷ кас ҳаққи ибодат надорад, магар Аллоҳ ва Муҳаммад фиристодаи Аллоҳ аст (ﷺ). 2. Намозҳои (фарзи ҷамоатӣ) бо камоли ихлос ва комилият гузоридан. 3. Закот (яъне садақаи фарз) додан. 4. Ҳаҷ кардан. (яъне зиёрати Макка). 5. Рӯза доштан дар моҳи Рамазон.",
+    text_ru: "Передают со слов Ибн ‘Умара: Посланник Аллаха (ﷺ) сказал: Ислам основан на (следующих) пяти (принципах): 1. Свидетельствовать, что никто не имеет права на поклонение, кроме Аллаха, и что Мухаммад — Посланник Аллаха (ﷺ). 2. Совершать (обязательные коллективные) молитвы должным образом и в совершенстве. 3. Платить Закят (т.е. обязательную милостыню). 4. Совершать Хадж (т.е. паломничество в Мекку). 5. Соблюдать пост в течение месяца Рамадан.",
+    text_fa: "ابن عمر روایت کرده است که رسول خدا (ﷺ) فرمود: اسلام بر (این) پنج (اصل) استوار است: ۱. شهادت دادن به اینکه هیچ کس جز الله سزاوار پرستش نیست و محمد فرستاده الله است (ﷺ). ۲. برپاداشتن نمازهای (واجب جماعت) با اخلاص و به طور کامل. ۳. پرداخت زکات (یعنی صدقه واجب). ۴. انجام حج (یعنی زیارت مکه). ۵. روزه گرفتن در ماه رمضان.",
+  },
+];

@@ -10,7 +10,7 @@ import {
   LogOut,
   Settings,
   MessageSquarePlus,
-  BookHeart,
+  BookOpen, // Changed from BookHeart
 } from 'lucide-react';
 import {
   Sidebar,
@@ -20,13 +20,12 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMenuBadge,
 } from '@/components/ui/sidebar';
 import { Logo } from '@/components/shared/logo';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { APP_NAME } from '@/lib/constants';
+import { useI18n } from '@/contexts/i18n-provider'; // Import useI18n
 
 // Mock current user - replace with actual auth logic
 const currentUser = {
@@ -35,16 +34,34 @@ const currentUser = {
   avatarUrl: "https://placehold.co/40x40.png",
 };
 
-
-const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: Home },
-  { href: '/questions', label: 'Browse Questions', icon: HelpCircle },
-  { href: '/questions/ask', label: 'Ask a Question', icon: MessageSquarePlus },
-  { href: '/profile/user1', label: 'My Profile', icon: User }, // Assuming user1 is current user
-];
-
 export function AppSidebar() {
   const pathname = usePathname();
+  const { t, isLoaded: i18nIsLoaded } = useI18n(); // Get t function and loading state
+
+  // Define navItems inside the component to use the t function
+  const navItems = i18nIsLoaded ? [
+    { href: '/dashboard', label: t('dashboard.title', {name: ''}).replace('Welcome back, !', 'Dashboard').trim(), icon: Home }, // Simplified label for sidebar
+    { href: '/questions', label: t('dashboard.browseQuestions'), icon: HelpCircle },
+    { href: '/questions/ask', label: t('dashboard.askQuestion'), icon: MessageSquarePlus },
+    { href: '/bukhari', label: t('sidebar.hadithBukhari'), icon: BookOpen },
+    { href: `/profile/${currentUser.id}`, label: t('header.profile'), icon: User },
+  ] : [];
+
+
+  if (!i18nIsLoaded) {
+    // You might want a loading skeleton for the sidebar if i18n is not loaded
+    return (
+      <Sidebar collapsible="icon">
+        <SidebarHeader className="p-4">
+           <Logo iconSize={28} textSize="text-2xl" />
+        </SidebarHeader>
+        <SidebarContent>
+          {/* Placeholder for loading items */}
+        </SidebarContent>
+      </Sidebar>
+    );
+  }
+
 
   return (
     <Sidebar collapsible="icon">
@@ -71,7 +88,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter className="p-2">
         <Separator className="my-2" />
-         <Link href="/profile/user1" legacyBehavior passHref>
+         <Link href={`/profile/${currentUser.id}`} legacyBehavior passHref>
           <Button variant="ghost" className="w-full justify-start gap-2 p-2 h-auto">
             <Avatar className="h-8 w-8">
                 <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} data-ai-hint="person" />
@@ -85,17 +102,17 @@ export function AppSidebar() {
         <SidebarMenu>
            <SidebarMenuItem>
              <Link href="/settings" legacyBehavior passHref>
-                <SidebarMenuButton tooltip={{children: "Settings", className: "ml-2"}} aria-label="Settings">
+                <SidebarMenuButton tooltip={{children: t('header.settings'), className: "ml-2"}} aria-label={t('header.settings')}>
                   <Settings />
-                  <span>Settings</span>
+                  <span>{t('header.settings')}</span>
                 </SidebarMenuButton>
               </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <Link href="/login" legacyBehavior passHref>
-                <SidebarMenuButton tooltip={{children: "Logout", className: "ml-2"}} aria-label="Logout">
+                <SidebarMenuButton tooltip={{children: t('header.logout'), className: "ml-2"}} aria-label={t('header.logout')}>
                   <LogOut />
-                  <span>Logout</span>
+                  <span>{t('header.logout')}</span>
                 </SidebarMenuButton>
             </Link>
           </SidebarMenuItem>

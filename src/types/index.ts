@@ -46,3 +46,19 @@ export interface Resource {
   title: string;
   url: string;
 }
+
+export interface Hadith {
+  id: string;
+  collection: string; // e.g., "Sahih al-Bukhari"
+  bookNumber?: number; // Optional: Book number within the collection
+  bookName_en?: string; // Optional: English name of the book/chapter
+  bookName_tj?: string;
+  bookName_ru?: string;
+  bookName_fa?: string;
+  hadithNumber: string; // Can be like "1", "1.2", "Volume 1, Book 1, Number 1"
+  text_en: string;
+  text_tj: string;
+  text_ru: string;
+  text_fa: string;
+  // Add other relevant fields like narrator, chapter, etc. if available
+}

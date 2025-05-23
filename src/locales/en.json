@@ -27,5 +27,15 @@
   "popularQuestions": {
     "title": "Popular Questions",
     "viewAll": "View All Questions"
+  },
+  "sidebar": {
+    "hadithBukhari": "Hadith Bukhari"
+  },
+  "bukhariPage": {
+    "title": "Sahih al-Bukhari",
+    "searchPlaceholder": "Search Hadith (e.g., prayer, Zakat)...",
+    "noResults": "No Hadith found matching your search.",
+    "hadithNo": "Hadith No:",
+    "book": "Book:"
   }
 }

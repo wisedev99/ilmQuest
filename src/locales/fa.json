@@ -27,5 +27,15 @@
   "popularQuestions": {
     "title": "سوالات محبوب",
     "viewAll": "مشاهده همه سوالات"
+  },
+  "sidebar": {
+    "hadithBukhari": "حدیث بخاری"
+  },
+  "bukhariPage": {
+    "title": "صحیح البخاری",
+    "searchPlaceholder": "جستجوی حدیث (مثلا نماز، زکات)...",
+    "noResults": "حدیثی مطابق با جستجوی شما یافت نشد.",
+    "hadithNo": "شماره حدیث:",
+    "book": "کتاب:"
   }
 }
