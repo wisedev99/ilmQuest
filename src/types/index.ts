@@ -56,9 +56,13 @@ export interface Hadith {
   bookName_ru?: string;
   bookName_fa?: string;
   hadithNumber: string; // Can be like "1", "1.2", "Volume 1, Book 1, Number 1"
+  narrator_en?: string;
+  narrator_tj?: string;
+  narrator_ru?: string;
+  narrator_fa?: string;
   text_en: string;
   text_tj: string;
   text_ru: string;
   text_fa: string;
-  // Add other relevant fields like narrator, chapter, etc. if available
+  // Add other relevant fields like chapter, etc. if available
 }

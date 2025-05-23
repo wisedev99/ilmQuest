@@ -8,7 +8,7 @@ import { sampleBukhariHadith } from "@/lib/bukhari-data";
 import type { Hadith } from "@/types";
 import React, { useState, useMemo, useEffect } from "react";
 import { useI18n, type LanguageCode } from "@/contexts/i18n-provider";
-import { BookOpen, Search } from "lucide-react";
+import { BookOpen, Search, UserCircle } from "lucide-react"; // Added UserCircle for narrator
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 
@@ -31,12 +31,14 @@ export default function BukhariPage() {
       const lang = language as LanguageCode;
       const text = hadith[`text_${lang}`] || hadith.text_en;
       const bookName = hadith[`bookName_${lang}`] || hadith.bookName_en;
+      const narrator = hadith[`narrator_${lang}`] || hadith.narrator_en;
       const hadithNumber = hadith.hadithNumber;
 
       const term = searchTerm.toLowerCase();
       return (
         text.toLowerCase().includes(term) ||
         (bookName && bookName.toLowerCase().includes(term)) ||
+        (narrator && narrator.toLowerCase().includes(term)) ||
         hadithNumber.toLowerCase().includes(term)
       );
     });
@@ -50,6 +52,11 @@ export default function BukhariPage() {
   const getBookName = (hadith: Hadith) => {
     const lang = language as LanguageCode;
     return hadith[`bookName_${lang}`] || hadith.bookName_en;
+  }
+
+  const getNarratorName = (hadith: Hadith) => {
+    const lang = language as LanguageCode;
+    return hadith[`narrator_${lang}`] || hadith.narrator_en;
   }
 
   if (isLoading) {
@@ -73,7 +80,7 @@ export default function BukhariPage() {
               {t('bukhariPage.title')}
             </CardTitle>
             <CardDescription>
-              Browse and search through the collection of Hadith from Sahih al-Bukhari.
+              {t('bukhariPage.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -104,6 +111,12 @@ export default function BukhariPage() {
                         <CardTitle className="text-lg">
                           {t('bukhariPage.hadithNo')} {hadith.hadithNumber}
                         </CardTitle>
+                        {getNarratorName(hadith) && (
+                          <p className="text-xs text-muted-foreground mt-1 flex items-center">
+                            <UserCircle className="h-3.5 w-3.5 mr-1.5" />
+                            {t('bukhariPage.narratedBy')} {getNarratorName(hadith)}
+                          </p>
+                        )}
                       </div>
                        <Badge variant="secondary">{hadith.collection}</Badge>
                     </div>
