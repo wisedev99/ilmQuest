@@ -16,6 +16,7 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 const I18N_STORAGE_KEY = 'app-language';
+const VALID_LANGUAGES: LanguageCode[] = ["en", "tj", "ru", "fa"];
 
 // Helper function to safely get nested values
 const getNestedValue = (obj: NestedTranslations, path: string): string | undefined => {
@@ -34,27 +35,33 @@ const getNestedValue = (obj: NestedTranslations, path: string): string | undefin
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<LanguageCode>('en');
-  const [translations, setTranslations] = useState<Translations | null>(null);
+  const [translations, setTranslations] = useState<Translations | {}>({}); // Initialize with empty object
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const loadTranslations = useCallback(async (lang: LanguageCode) => {
+  const loadTranslations = useCallback(async (langToLoad: LanguageCode) => {
+    let effectiveLang = langToLoad;
+    if (!VALID_LANGUAGES.includes(langToLoad)) {
+      console.error(`Attempted to load translations for invalid language: ${langToLoad}. Defaulting to 'en'.`);
+      effectiveLang = 'en';
+    }
+
+    setIsLoaded(false);
     try {
-      setIsLoaded(false);
-      const module = await import(`@/locales/${lang}.json`);
+      const module = await import(`@/locales/${effectiveLang}.json`);
       setTranslations(module.default as Translations);
     } catch (error) {
-      console.error(`Failed to load translations for ${lang}:`, error);
-      // Fallback to English if current lang fails
-      if (lang !== 'en') {
+      console.error(`Failed to load translations for ${effectiveLang}:`, error);
+      if (effectiveLang !== 'en') {
         try {
-            const module = await import(`@/locales/en.json`);
-            setTranslations(module.default as Translations);
+          console.warn(`Attempting to load fallback English translations.`);
+          const module = await import(`@/locales/en.json`);
+          setTranslations(module.default as Translations);
         } catch (fallbackError) {
-            console.error(`Failed to load fallback English translations:`, fallbackError);
-            setTranslations(null); // Set to null if even fallback fails
+          console.error(`Failed to load fallback English translations:`, fallbackError);
+          setTranslations({}); 
         }
       } else {
-        setTranslations(null); // Set to null if loading English fails
+        setTranslations({});
       }
     } finally {
       setIsLoaded(true);
@@ -62,38 +69,51 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const storedLang = localStorage.getItem(I18N_STORAGE_KEY) as LanguageCode | null;
-    const validLanguages: LanguageCode[] = ["en", "tj", "ru", "fa"];
-    const initialLang = storedLang && validLanguages.includes(storedLang) ? storedLang : 'en';
+    let storedLang: LanguageCode | null = null;
+    try {
+      storedLang = localStorage.getItem(I18N_STORAGE_KEY) as LanguageCode | null;
+    } catch (e) {
+      console.warn("Could not access localStorage to get language:", e);
+    }
+    
+    const initialLang = storedLang && VALID_LANGUAGES.includes(storedLang) ? storedLang : 'en';
     
     setLanguageState(initialLang);
-    loadTranslations(initialLang);
     if (typeof document !== 'undefined') {
         document.documentElement.lang = initialLang;
     }
+    loadTranslations(initialLang);
   }, [loadTranslations]);
 
   const setLanguage = (lang: LanguageCode) => {
+    if (!VALID_LANGUAGES.includes(lang)) {
+      console.error(`Attempted to set invalid language: ${lang}. Ignoring.`);
+      return;
+    }
     setLanguageState(lang);
-    localStorage.setItem(I18N_STORAGE_KEY, lang);
-    loadTranslations(lang);
+    try {
+      localStorage.setItem(I18N_STORAGE_KEY, lang);
+    } catch (e) {
+      console.warn("Could not access localStorage to set language:", e);
+    }
     if (typeof document !== 'undefined') {
         document.documentElement.lang = lang;
     }
+    loadTranslations(lang);
   };
 
   const t = useCallback((key: string, replacements?: Record<string, string>): string => {
-    if (!isLoaded || !translations) {
-        // During loading or if translations failed to load, return the key or a loading indicator
+    if (!isLoaded) {
         // console.warn(`Translations not ready for key "${key}" (lang: ${language}, loaded: ${isLoaded})`);
         return key; 
     }
-
-    let translatedString = getNestedValue(translations as unknown as NestedTranslations, key);
+    // Ensure translations is not null/undefined before passing to getNestedValue
+    const currentTranslations = translations || {};
+    let translatedString = getNestedValue(currentTranslations as NestedTranslations, key);
 
     if (translatedString === undefined) {
-      console.warn(`Translation key "${key}" not found for language "${language}".`);
-      return key; // Key not found
+      // console.warn(`Translation key "${key}" not found for language "${language}".`);
+      return key; 
     }
 
     if (replacements) {
