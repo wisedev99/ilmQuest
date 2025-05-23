@@ -17,12 +17,10 @@ export function CustomLogoIcon({ size = 28, className }: CustomLogoIconProps) {
   }, []);
 
   // Use the theme's primary color for the icon in both light and dark modes.
-  // This ensures it's always an accent color that contrasts with the background.
   const iconColor = 'hsl(var(--primary))';
 
   if (!mounted) {
     // Return a placeholder to avoid hydration mismatch and ensure resolvedTheme is available.
-    // A simple div with the requested size can act as a placeholder.
     return <div style={{ width: size, height: size }} className={className} />;
   }
 
@@ -34,22 +32,37 @@ export function CustomLogoIcon({ size = 28, className }: CustomLogoIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
-      // The 'fill' on the SVG element itself can be a default, but explicit fills/strokes on paths are more precise.
     >
       <title>FajrulIlm Logo Icon</title>
-      <desc>An abstract calligraphic icon representing FajrulIlm.</desc>
-      
-      {/* Main flowing element - highly simplified */}
-      <path 
-        d="M40,85 C25,70 25,40 45,20 C55,10 65,10 70,25 C75,40 65,55 55,65 C45,75 40,85 40,85 Z M50,75 Q60,50 70,25"
-        stroke={iconColor} // Use the determined iconColor for the stroke
-        strokeWidth="6"
-        fill="none" // This path is an outline
+      <desc>Icon representing FajrulIlm: an open book on a stand, with a crescent moon and rays of light above, symbolizing the dawn of knowledge.</desc>
+
+      {/* Rehal (Book Stand) - Two crossed lines */}
+      <path
+        d="M30 82 L70 52 M70 82 L30 52" // X shape for the stand
+        stroke={iconColor}
+        strokeWidth="6" // Adjusted for visibility
         strokeLinecap="round"
-        strokeLinejoin="round"
+        fill="none"
       />
-      {/* Dot/accent element at the top */}
-      <circle cx="70" cy="22" r="5" fill={iconColor} /> {/* Use the determined iconColor for the fill */}
+
+      {/* Open Book - Simplified as a diamond shape, filled */}
+      <path
+        d="M20 55 L50 42 L80 55 L50 72 Z" // Diamond shape representing the open book
+        fill={iconColor}
+      />
+
+      {/* Crescent Moon - Filled */}
+      <path
+        d="M42 27 C 42 14, 58 14, 58 27 C 50 22, 50 22, 42 27 Z" // Crescent shape
+        fill={iconColor}
+      />
+
+      {/* Rays of Light - Lines with rounded caps */}
+      <line x1="50" y1="18" x2="50" y2="8" stroke={iconColor} strokeWidth="4" strokeLinecap="round" /> {/* Top center ray */}
+      <line x1="38" y1="22" x2="32" y2="15" stroke={iconColor} strokeWidth="4" strokeLinecap="round" /> {/* Top-left ray */}
+      <line x1="62" y1="22" x2="68" y2="15" stroke={iconColor} strokeWidth="4" strokeLinecap="round" /> {/* Top-right ray */}
+      <line x1="30" y1="32" x2="22" y2="28" stroke={iconColor} strokeWidth="3.5" strokeLinecap="round" /> {/* Mid-left ray */}
+      <line x1="70" y1="32" x2="78" y2="28" stroke={iconColor} strokeWidth="3.5" strokeLinecap="round" /> {/* Mid-right ray */}
     </svg>
   );
 }
