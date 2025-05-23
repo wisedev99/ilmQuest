@@ -19,10 +19,11 @@ import { Logo } from '@/components/shared/logo';
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { ThemeSwitcher } from '@/components/shared/theme-switcher';
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
-import { useI18n } from '@/contexts/i18n-provider'; // Updated import
+import { useI18n } from '@/contexts/i18n-provider';
 
 // Mock current user - replace with actual auth logic
 const currentUser = {
+  id: 'user1', // Added id for profile link consistency
   name: "Ali Hassan",
   email: "ali.hassan@example.com",
   avatarUrl: "https://placehold.co/40x40.png",
@@ -34,15 +35,15 @@ export function AppHeader() {
   const { t, isLoaded: i18nIsLoaded } = useI18n();
 
   if (!i18nIsLoaded) {
-    // You might want a loading state for the header or parts of it
-    // For simplicity, we'll render a basic version or null
-    // This is to prevent using `t` function before translations are ready
+    // Render a minimal header or a loading state
     return (
       <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6 shadow-sm">
         {isMobile && <SidebarTrigger />}
         {!isMobile && <Logo iconSize={24} textSize="text-xl" />}
-        <div className="flex flex-1 items-center gap-2 md:ml-auto md:gap-2 lg:gap-4">
-          {/* Placeholder for form or loading indicator */}
+        <div className="flex flex-1 items-center justify-end gap-2 md:ml-auto md:gap-2 lg:gap-4">
+          {/* Placeholder for switchers or loading indicator */}
+          <div className="h-8 w-20 bg-muted rounded-md animate-pulse"></div> {/* Language switcher placeholder */}
+          <div className="h-8 w-20 bg-muted rounded-md animate-pulse"></div> {/* Theme switcher placeholder */}
         </div>
       </header>
     );
@@ -97,7 +98,8 @@ export function AppHeader() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild onClick={() => setUserMenuOpen(false)}>
-              <Link href="/profile/user1"> {/* Mock current user ID */}
+              {/* Use currentUser.id for profile link */}
+              <Link href={`/profile/${currentUser.id}`}> 
                 <UserIcon className="mr-2 h-4 w-4" />
                 {t('header.profile')}
               </Link>
