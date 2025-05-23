@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react"; 
@@ -17,8 +18,8 @@ import { Bell, LogOut, Search, Settings, User as UserIcon, MessageSquarePlus } f
 import { Logo } from '@/components/shared/logo';
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { ThemeSwitcher } from '@/components/shared/theme-switcher';
-import { LanguageSwitcher } from '@/components/shared/language-switcher'; // Import LanguageSwitcher
-import { useI18n } from '@/locales/client'; // Import useI18n for translations
+import { LanguageSwitcher } from '@/components/shared/language-switcher';
+import { useI18n } from '@/contexts/i18n-provider'; // Updated import
 
 // Mock current user - replace with actual auth logic
 const currentUser = {
@@ -30,7 +31,22 @@ const currentUser = {
 export function AppHeader() {
   const { isMobile } = useSidebar();
   const [userMenuOpen, setUserMenuOpen] = React.useState(false); 
-  const t = useI18n(); // Initialize useI18n
+  const { t, isLoaded: i18nIsLoaded } = useI18n();
+
+  if (!i18nIsLoaded) {
+    // You might want a loading state for the header or parts of it
+    // For simplicity, we'll render a basic version or null
+    // This is to prevent using `t` function before translations are ready
+    return (
+      <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6 shadow-sm">
+        {isMobile && <SidebarTrigger />}
+        {!isMobile && <Logo iconSize={24} textSize="text-xl" />}
+        <div className="flex flex-1 items-center gap-2 md:ml-auto md:gap-2 lg:gap-4">
+          {/* Placeholder for form or loading indicator */}
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6 shadow-sm">

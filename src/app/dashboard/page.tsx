@@ -1,26 +1,38 @@
 
+"use client";
+
 import { AppLayout } from "@/components/layout/app-layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PopularQuestions } from "@/components/qa/popular-questions";
 import { getPopularQuestions, mockQuestions, mockUsers } from "@/lib/mock-data";
-import { Activity, BarChart3, HelpCircle, MessageSquarePlus, User } from "lucide-react";
+import { Activity, HelpCircle, MessageSquarePlus, User } from "lucide-react";
 import Image from "next/image";
+import { useI18n } from "@/contexts/i18n-provider";
 
 export default function DashboardPage() {
-  // Mock data - replace with actual data fetching
+  const { t, isLoaded: i18nIsLoaded } = useI18n();
   const currentUser = mockUsers[0]; // Assuming Ali Hassan is logged in
   const popularQuestions = getPopularQuestions();
-  const recentQuestions = mockQuestions.slice(0, 2); // Get a couple of recent questions
+  
+  if (!i18nIsLoaded) {
+     return (
+      <AppLayout>
+        <div className="flex flex-col gap-6 items-center justify-center h-full">
+          <p>Loading dashboard...</p>
+        </div>
+      </AppLayout>
+    );
+  }
 
   return (
     <AppLayout>
       <div className="flex flex-col gap-6">
         <Card className="shadow-lg">
           <CardHeader className="pb-4">
-            <CardTitle className="text-3xl">Welcome back, {currentUser.name}!</CardTitle>
-            <CardDescription>Here&apos;s what&apos;s new on IlmQuest. Ready to learn or share?</CardDescription>
+            <CardTitle className="text-3xl">{t('dashboard.title', { name: currentUser.name })}</CardTitle>
+            <CardDescription>{t('dashboard.description')}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col sm:flex-row items-center gap-6">
             <Image 
@@ -40,12 +52,12 @@ export default function DashboardPage() {
               <div className="flex gap-3">
                 <Button asChild>
                   <Link href="/questions/ask">
-                    <MessageSquarePlus className="mr-2 h-4 w-4" /> Ask Question
+                    <MessageSquarePlus className="mr-2 h-4 w-4" /> {t('dashboard.askQuestion')}
                   </Link>
                 </Button>
                 <Button variant="outline" asChild>
                   <Link href="/questions">
-                    <HelpCircle className="mr-2 h-4 w-4" /> Browse Questions
+                    <HelpCircle className="mr-2 h-4 w-4" /> {t('dashboard.browseQuestions')}
                   </Link>
                 </Button>
               </div>

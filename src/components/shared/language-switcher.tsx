@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -9,51 +10,59 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Languages, Check } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useChangeLocale, useCurrentLocale, useI18n } from '@/locales/client';
+import { useI18n, type LanguageCode } from "@/contexts/i18n-provider"; // Import LanguageCode
 
-// Define the structure for supported languages
-interface LanguageOption {
-  code: "en" | "tj" | "ru" | "fa";
+type LanguageOption = {
+  code: LanguageCode; // Use the imported LanguageCode type
   name: string;
-}
+};
 
+// Ensure these codes match the LanguageCode type and your JSON file names
 const supportedLanguages: LanguageOption[] = [
   { code: "en", name: "English" },
   { code: "tj", name: "Тоҷикӣ" }, // Tajik
   { code: "ru", name: "Русский" }, // Russian
-  { code: "fa", name: "فارسی" },    // Persian
+  { code: "fa", name: "فارسی" },   // Persian
 ];
 
 export function LanguageSwitcher() {
-  const changeLocale = useChangeLocale();
-  const currentLocale = useCurrentLocale();
-  const t = useI18n();
-
+  const { language: currentLang, setLanguage, t, isLoaded: i18nIsLoaded } = useI18n();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const handleLanguageChange = (langCode: LanguageOption["code"]) => {
-    changeLocale(langCode);
+  const handleLanguageChange = (langCode: LanguageCode) => { // Ensure langCode is of type LanguageCode
+    setLanguage(langCode);
   };
 
   if (!isMounted) {
     // Render a disabled button placeholder during server rendering and initial client hydration
-    // to prevent hydration mismatch and avoid calling client hooks prematurely.
+    // This helps avoid hydration mismatches if the button structure is complex.
+    // Alternatively, return null if you prefer nothing to be shown initially.
     return (
        <Button variant="outline" size="icon" disabled aria-label="Change language">
           <Languages className="h-[1.2rem] w-[1.2rem]" />
         </Button>
     );
   }
+  
+  if (!i18nIsLoaded) {
+    // After mount, if i18n is still loading translations, show a disabled button.
+    // Using a static string for aria-label here is safest.
+    return (
+       <Button variant="outline" size="icon" disabled aria-label="Change language (loading...)">
+          <Languages className="h-[1.2rem] w-[1.2rem]" />
+        </Button>
+    );
+  }
 
-  // At this point, isMounted is true. currentLocale and t() can be safely used.
+  // isMounted is true AND i18nIsLoaded is true
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" aria-label={t('header.languageSwitcherTooltip')}>
+        <Button variant="outline" size="icon" aria-label={t('header.languageSwitcherTooltip') || "Change language"}>
           <Languages className="h-[1.2rem] w-[1.2rem]" />
         </Button>
       </DropdownMenuTrigger>
@@ -63,10 +72,10 @@ export function LanguageSwitcher() {
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
             className="cursor-pointer"
-            disabled={currentLocale === lang.code} // Optionally disable the current language
+            disabled={currentLang === lang.code} // Disable current language
           >
             {lang.name}
-            {currentLocale === lang.code && <Check className="ml-auto h-4 w-4 text-primary" />}
+            {currentLang === lang.code && <Check className="ml-auto h-4 w-4 text-primary" />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
