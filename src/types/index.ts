@@ -56,13 +56,15 @@ export interface Hadith {
   bookName_ru?: string;
   bookName_fa?: string;
   hadithNumber: string; // Can be like "1", "1.2", "Volume 1, Book 1, Number 1"
-  narrator_en?: string;
-  narrator_tj?: string;
-  narrator_ru?: string;
-  narrator_fa?: string;
+  // narrator_en, _tj, _ru, _fa will now store the full chain of narrators
+  narrator_en?: string; // Full chain of narrators in English
+  narrator_tj?: string; // Full chain of narrators in Tajik
+  narrator_ru?: string; // Full chain of narrators in Russian
+  narrator_fa?: string; // Full chain of narrators in Farsi
   text_en: string;
   text_tj: string;
   text_ru: string;
   text_fa: string;
   // Add other relevant fields like chapter, etc. if available
 }
+

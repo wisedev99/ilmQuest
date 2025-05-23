@@ -34,10 +34,11 @@
   "bukhariPage": {
     "title": "Sahih al-Bukhari",
     "description": "Browse and search through the collection of Hadith from Sahih al-Bukhari.",
-    "searchPlaceholder": "Search Hadith (e.g., prayer, Zakat, narrator)...",
+    "searchPlaceholder": "Search Hadith (e.g., prayer, Zakat, narrator chain)...",
     "noResults": "No Hadith found matching your search.",
     "hadithNo": "Hadith No:",
     "book": "Book:",
-    "narratedBy": "Narrated by:"
+    "narratorsLabel": "Narrators:",
+    "loading": "Loading Hadith Collection..."
   }
 }

@@ -8,7 +8,7 @@ import { sampleBukhariHadith } from "@/lib/bukhari-data";
 import type { Hadith } from "@/types";
 import React, { useState, useMemo, useEffect } from "react";
 import { useI18n, type LanguageCode } from "@/contexts/i18n-provider";
-import { BookOpen, Search, UserCircle } from "lucide-react"; // Added UserCircle for narrator
+import { BookOpen, Search, Link2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 
@@ -29,16 +29,23 @@ export default function BukhariPage() {
     }
     return sampleBukhariHadith.filter((hadith) => {
       const lang = language as LanguageCode;
-      const text = hadith[`text_${lang}`] || hadith.text_en;
-      const bookName = hadith[`bookName_${lang}`] || hadith.bookName_en;
-      const narrator = hadith[`narrator_${lang}`] || hadith.narrator_en;
+      
+      const textKey = 'text_' + lang;
+      const text = (hadith as any)[textKey] || hadith.text_en;
+
+      const bookNameKey = 'bookName_' + lang;
+      const bookName = (hadith as any)[bookNameKey] || hadith.bookName_en;
+
+      const narratorKey = 'narrator_' + lang;
+      const narratorChain = (hadith as any)[narratorKey] || hadith.narrator_en;
+      
       const hadithNumber = hadith.hadithNumber;
 
       const term = searchTerm.toLowerCase();
       return (
         text.toLowerCase().includes(term) ||
         (bookName && bookName.toLowerCase().includes(term)) ||
-        (narrator && narrator.toLowerCase().includes(term)) ||
+        (narratorChain && narratorChain.toLowerCase().includes(term)) ||
         hadithNumber.toLowerCase().includes(term)
       );
     });
@@ -46,17 +53,20 @@ export default function BukhariPage() {
 
   const getHadithText = (hadith: Hadith) => {
     const lang = language as LanguageCode;
-    return hadith[`text_${lang}`] || hadith.text_en;
+    const key = 'text_' + lang;
+    return (hadith as any)[key] || hadith.text_en;
   };
 
   const getBookName = (hadith: Hadith) => {
     const lang = language as LanguageCode;
-    return hadith[`bookName_${lang}`] || hadith.bookName_en;
+    const key = 'bookName_' + lang;
+    return (hadith as any)[key] || hadith.bookName_en;
   }
 
-  const getNarratorName = (hadith: Hadith) => {
+  const getNarratorChain = (hadith: Hadith) => {
     const lang = language as LanguageCode;
-    return hadith[`narrator_${lang}`] || hadith.narrator_en;
+    const key = 'narrator_' + lang;
+    return (hadith as any)[key] || hadith.narrator_en;
   }
 
   if (isLoading) {
@@ -64,7 +74,7 @@ export default function BukhariPage() {
       <AppLayout>
         <div className="flex flex-col gap-6 items-center justify-center h-full">
           <BookOpen className="h-12 w-12 animate-pulse text-primary" />
-          <p>Loading Hadith Collection...</p>
+          <p>{t('bukhariPage.loading') || 'Loading Hadith Collection...'}</p>
         </div>
       </AppLayout>
     );
@@ -111,10 +121,11 @@ export default function BukhariPage() {
                         <CardTitle className="text-lg">
                           {t('bukhariPage.hadithNo')} {hadith.hadithNumber}
                         </CardTitle>
-                        {getNarratorName(hadith) && (
-                          <p className="text-xs text-muted-foreground mt-1 flex items-center">
-                            <UserCircle className="h-3.5 w-3.5 mr-1.5" />
-                            {t('bukhariPage.narratedBy')} {getNarratorName(hadith)}
+                        {getNarratorChain(hadith) && (
+                          <p className="text-xs text-muted-foreground mt-1 flex items-start">
+                            <Link2 className="h-3.5 w-3.5 mr-1.5 mt-0.5 flex-shrink-0" />
+                            <span className="font-semibold mr-1">{t('bukhariPage.narratorsLabel')}</span>
+                            <span>{getNarratorChain(hadith)}</span>
                           </p>
                         )}
                       </div>
