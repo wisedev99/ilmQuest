@@ -46,7 +46,7 @@ export default function QuestionPage({ params }: { params: QuestionPageParams })
       <div className="max-w-4xl mx-auto py-8 px-4">
         <Card className="shadow-lg mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl md:text-3xl">{question.title}</CardTitle>
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl">{question.title}</CardTitle>
             <div className="flex items-center space-x-2 text-sm text-muted-foreground pt-2">
               <Link href={`/profile/${question.author.id}`} className="flex items-center hover:underline">
                 <Avatar className="h-8 w-8 mr-2">
@@ -76,7 +76,7 @@ export default function QuestionPage({ params }: { params: QuestionPageParams })
         <Separator className="my-8" />
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4 flex items-center">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4 flex items-center">
             <MessageSquare className="h-5 w-5 mr-2 text-primary" />
             {question.answers.length} {question.answers.length === 1 ? "Answer" : "Answers"}
           </h2>

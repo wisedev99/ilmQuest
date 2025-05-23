@@ -34,7 +34,7 @@ export default function DashboardPage() {
       <div className="flex flex-col gap-6">
         <Card className="shadow-lg">
           <CardHeader className="pb-4">
-            <CardTitle className="text-3xl">{t('dashboard.title', { name: currentUser.name })}</CardTitle>
+            <CardTitle className="text-2xl sm:text-3xl">{t('dashboard.title', { name: currentUser.name })}</CardTitle>
             <CardDescription>{t('dashboard.description', { appName: appNameToDisplay })}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col sm:flex-row items-center gap-6">
@@ -43,22 +43,22 @@ export default function DashboardPage() {
               alt="Abstract Islamic pattern" 
               width={300} 
               height={200} 
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover w-full sm:w-[300px] h-auto sm:h-[200px]"
               data-ai-hint="islamic pattern"
             />
-            <div className="flex-1">
+            <div className="flex-1 text-center sm:text-left">
               <p className="text-muted-foreground mb-4">
                 {currentUser.userType === "Ulama" 
                   ? "Share your wisdom by answering questions or explore recent discussions." 
                   : "Continue your journey of knowledge. Ask a new question or explore topics."}
               </p>
-              <div className="flex gap-3">
-                <Button asChild>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
+                <Button asChild className="w-full sm:w-auto">
                   <Link href="/questions/ask">
                     <MessageSquarePlus className="mr-2 h-4 w-4" /> {t('dashboard.askQuestion')}
                   </Link>
                 </Button>
-                <Button variant="outline" asChild>
+                <Button variant="outline" asChild className="w-full sm:w-auto">
                   <Link href="/questions">
                     <HelpCircle className="mr-2 h-4 w-4" /> {t('dashboard.browseQuestions')}
                   </Link>

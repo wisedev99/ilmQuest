@@ -85,8 +85,8 @@ export default function BukhariPage() {
       <div className="flex flex-col gap-6 h-full">
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle className="text-3xl flex items-center gap-2">
-              <BookOpen className="h-8 w-8 text-primary" />
+            <CardTitle className="text-2xl sm:text-3xl flex items-center gap-2">
+              <BookOpen className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
               {t('bukhariPage.title')}
             </CardTitle>
             <CardDescription>
@@ -116,9 +116,9 @@ export default function BukhariPage() {
                     <div className="flex justify-between items-start">
                       <div>
                         {getBookName(hadith) && (
-                           <p className="text-sm text-primary font-medium mb-1">{t('bukhariPage.book')} {getBookName(hadith)}</p>
+                           <p className="text-xs sm:text-sm text-primary font-medium mb-1">{t('bukhariPage.book')} {getBookName(hadith)}</p>
                         )}
-                        <CardTitle className="text-lg">
+                        <CardTitle className="text-md sm:text-lg">
                           {t('bukhariPage.hadithNo')} {hadith.hadithNumber}
                         </CardTitle>
                         {getNarratorChain(hadith) && (

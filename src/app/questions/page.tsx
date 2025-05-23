@@ -17,7 +17,7 @@ export default function QuestionsPage() {
     <AppLayout>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <h1 className="text-3xl font-semibold tracking-tight">Browse Questions</h1>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">Browse Questions</h1>
           <Button asChild className="w-full sm:w-auto">
             <Link href="/questions/ask">
               <MessageSquarePlus className="mr-2 h-4 w-4" /> Ask a New Question
@@ -26,11 +26,11 @@ export default function QuestionsPage() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 p-4 border rounded-lg bg-card">
-          <div className="relative flex-1 w-full sm:max-w-sm">
+          <div className="relative flex-1 w-full">
             <Search className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground" />
             <Input placeholder="Search questions by keyword or tag..." className="pl-8 w-full" />
           </div>
-          <div className="flex gap-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <Select defaultValue="recent">
               <SelectTrigger className="w-full sm:w-[180px]">
                 <SelectValue placeholder="Sort by" />
