@@ -29,7 +29,8 @@
     "viewAll": "View All Questions"
   },
   "sidebar": {
-    "hadithBukhari": "Hadith Bukhari"
+    "hadithBukhari": "Hadith Bukhari",
+    "aboutUs": "About Us"
   },
   "bukhariPage": {
     "title": "Sahih al-Bukhari",
@@ -40,5 +41,27 @@
     "book": "Book:",
     "narratorsLabel": "Narrators:",
     "loading": "Loading Hadith Collection..."
+  },
+  "aboutPage": {
+    "title": "About FajrulIlm",
+    "missionTitle": "Our Mission",
+    "missionText": "FajrulIlm (Dawn of Knowledge) is dedicated to providing a reliable and accessible platform for individuals to seek authentic Islamic knowledge directly from verified Ulama (scholars). We aim to foster a community of learning, understanding, and spiritual growth, making traditional Islamic teachings available in a modern, digital format.",
+    "contactUsTitle": "Contact Us",
+    "contactUsDescription": "Have a question, feedback, or suggestion? We'd love to hear from you. Please fill out the form below, and our team will get back to you as soon as possible.",
+    "formNameLabel": "Your Name",
+    "formNamePlaceholder": "Enter your full name",
+    "formEmailLabel": "Your Email",
+    "formEmailPlaceholder": "name@example.com",
+    "formSubjectLabel": "Subject",
+    "formSubjectPlaceholder": "Regarding...",
+    "formMessageLabel": "Your Message",
+    "formMessagePlaceholder": "Type your message here...",
+    "formSendButton": "Send Message",
+    "formSuccessTitle": "Message Sent!",
+    "formSuccessDescription": "Thank you for contacting us. We will get back to you shortly."
+  },
+  "footer": {
+    "aboutUsLink": "About Us"
   }
 }
+

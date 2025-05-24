@@ -10,7 +10,8 @@ import {
   LogOut,
   Settings,
   MessageSquarePlus,
-  BookOpen, // Changed from BookHeart
+  BookOpen,
+  Info, // Added Info icon for About Us
 } from 'lucide-react';
 import {
   Sidebar,
@@ -25,9 +26,8 @@ import { Logo } from '@/components/shared/logo';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useI18n } from '@/contexts/i18n-provider'; // Import useI18n
+import { useI18n } from '@/contexts/i18n-provider';
 
-// Mock current user - replace with actual auth logic
 const currentUser = {
   id: 'user1',
   name: "Ali Hassan",
@@ -36,20 +36,19 @@ const currentUser = {
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { t, isLoaded: i18nIsLoaded } = useI18n(); // Get t function and loading state
+  const { t, isLoaded: i18nIsLoaded } = useI18n();
 
-  // Define navItems inside the component to use the t function
   const navItems = i18nIsLoaded ? [
-    { href: '/dashboard', label: t('dashboard.title', {name: ''}).replace('Welcome back, !', 'Dashboard').trim(), icon: Home }, // Simplified label for sidebar
+    { href: '/dashboard', label: t('dashboard.title', {name: ''}).replace('Welcome back, !', 'Dashboard').trim(), icon: Home },
     { href: '/questions', label: t('dashboard.browseQuestions'), icon: HelpCircle },
     { href: '/questions/ask', label: t('dashboard.askQuestion'), icon: MessageSquarePlus },
     { href: '/bukhari', label: t('sidebar.hadithBukhari'), icon: BookOpen },
     { href: `/profile/${currentUser.id}`, label: t('header.profile'), icon: User },
+    { href: '/about', label: t('sidebar.aboutUs'), icon: Info }, // Added About Us
   ] : [];
 
 
   if (!i18nIsLoaded) {
-    // You might want a loading skeleton for the sidebar if i18n is not loaded
     return (
       <Sidebar collapsible="icon">
         <SidebarHeader className="p-4">
@@ -61,7 +60,6 @@ export function AppSidebar() {
       </Sidebar>
     );
   }
-
 
   return (
     <Sidebar collapsible="icon">

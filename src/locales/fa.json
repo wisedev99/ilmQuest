@@ -29,7 +29,8 @@
     "viewAll": "مشاهده همه سوالات"
   },
   "sidebar": {
-    "hadithBukhari": "حدیث بخاری"
+    "hadithBukhari": "حدیث بخاری",
+    "aboutUs": "درباره ما"
   },
   "bukhariPage": {
     "title": "صحیح البخاری",
@@ -40,5 +41,27 @@
     "book": "کتاب:",
     "narratorsLabel": "راویان:",
     "loading": "در حال بارگذاری مجموعه حدیث..."
+  },
+  "aboutPage": {
+    "title": "درباره فجرالعلم",
+    "missionTitle": "ماموریت ما",
+    "missionText": "فجرالعلم (طلوع دانش) به ارائه یک پلتفرم قابل اعتماد و در دسترس برای افرادی که به دنبال دانش اصیل اسلامی مستقیماً از علمای معتبر هستند، اختصاص دارد. هدف ما پرورش جامعه‌ای از یادگیری، درک و رشد معنوی است و آموزه‌های سنتی اسلامی را در قالبی مدرن و دیجیتال در دسترس قرار می‌دهیم.",
+    "contactUsTitle": "تماس با ما",
+    "contactUsDescription": "سوال، بازخورد یا پیشنهادی دارید؟ خوشحال می‌شویم از شما بشنویم. لطفاً فرم زیر را پر کنید و تیم ما در اسرع وقت با شما تماس خواهد گرفت.",
+    "formNameLabel": "نام شما",
+    "formNamePlaceholder": "نام کامل خود را وارد کنید",
+    "formEmailLabel": "ایمیل شما",
+    "formEmailPlaceholder": "name@example.com",
+    "formSubjectLabel": "موضوع",
+    "formSubjectPlaceholder": "در مورد...",
+    "formMessageLabel": "پیام شما",
+    "formMessagePlaceholder": "پیام خود را اینجا تایپ کنید...",
+    "formSendButton": "ارسال پیام",
+    "formSuccessTitle": "پیام ارسال شد!",
+    "formSuccessDescription": "از تماس شما متشکریم. به زودی با شما تماس خواهیم گرفت."
+  },
+  "footer": {
+    "aboutUsLink": "درباره ما"
   }
 }
+
